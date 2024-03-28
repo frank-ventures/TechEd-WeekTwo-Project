@@ -1,0 +1,9 @@
+body {
+  background-color: coral;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

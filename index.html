@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+    <title>Coffee Dripper Game</title>
+  </head>
+  <header>
+    <!-- Make this like a coffee shop sign. Forum? -->
+    <h1>Welcome To The Coffee Dripper Clicker</h1>
+  </header>
+  <body>
+    <div class="wrapper">
+      <!-- This is where the clicker itself is. -->
+      <section class="clicker">
+        <button id="coffeeButton">Get Beans</button>
+      </section>
+
+      <!-- The upgrades shop -->
+      <section class="upgrades">
+        <button id="upgradeButton">Upgrade your beans</button>
+      </section>
+
+      <!-- This section displays the counter -->
+      <section class="counter">
+        <p class="counter">You have <span id="beanCounter"></span> beans.</p>
+      </section>
+
+      <!-- This shows the automatic 'cookies per second' display -->
+      <section class="per-second">
+        You're collecting <span id="beansPerSecond"></span> beans per second.
+      </section>
+    </div>
+  </body>
+  <footer>Frankie Shrieves</footer>
+</html>
