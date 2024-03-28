@@ -7,38 +7,83 @@
     <script src="./app.js" defer></script>
     <title>Coffee Dripper Game</title>
   </head>
-  <header>
+  <header class="page-border">
     <!-- Make this like a coffee shop sign. Forum? -->
-    <h1>Welcome To The Coffee Dripper Clicker</h1>
+    <h1>The Caffeination Station</h1>
+    <p>How many coffee beans can you collect?</p>
   </header>
   <body>
     <div class="wrapper">
       <!-- This is where the clicker itself is. -->
-      <section class="clicker">
-        <button id="coffeeButton">Get Beans</button>
+      <section class="clicker page-border has-background centralise-content">
+        <!-- <button id="coffeeButton"></button> -->
+        <img
+          src="./assets/coffee-cup-icon.png"
+          class="hover-effect"
+          id="coffeeButton"
+        />
+        <p class="sub-icon page-border">Click your cup to get more beans!</p>
       </section>
 
       <!-- The upgrades shop -->
-      <section class="upgrades">
-        <button id="upgradeButton">Upgrade your beans</button>
+      <section class="upgrades page-border has-background centralise-content">
+        <!-- <button id="upgradeButton">Upgrade your beans</button> -->
+        <img
+          src="./assets/upgrade-icon.png"
+          class="hover-effect"
+          id="upgradeButton"
+        />
+        <p class="sub-icon page-border">Increase your beans per second!</p>
       </section>
 
       <!-- This section displays the counter -->
-      <section class="counter">
-        <p>You have <span id="beanCounter"></span> beans.</p>
+      <section class="counter page-border has-background centralise-content">
+        <p class="sub-icon page-border">
+          You have <span id="beanCounter"></span> beans.
+        </p>
       </section>
 
       <!-- This shows the automatic 'cookies per second' display -->
-      <section class="per-second">
-        <p>
+      <section class="per-second page-border has-background centralise-content">
+        <p class="sub-icon page-border">
           You're collecting <span id="beansPerSecond"></span> beans per second.
         </p>
       </section>
-      <section class="reset">
+      <section class="upgrade-zone page-border has-background">
+        <div class="upgrade-header">
+          <h2>The Upgrade Zone</h2>
+          <p><em>Coming Soon!</em></p>
+          <p>Spend your beans and buy some fancy new coffee kit here!</p>
+        </div>
+
+        <div class="upgrade-box-container">
+          <div class="upgrade-box page-border">
+            <button>Coffee Grinder</button>
+            <p>Get one!</p>
+          </div>
+          <div class="upgrade-box page-border">
+            <button>Espresso Machine</button>
+            <p>Get one!</p>
+          </div>
+          <div class="upgrade-box page-border">
+            <button>Latte Artist</button>
+            <p>Get one!</p>
+          </div>
+          <div class="upgrade-box page-border">
+            <button>Local Cake Baker</button>
+            <p>Get one!</p>
+          </div>
+        </div>
+      </section>
+      <section class="reset page-border">
         <h2 class="danger">DANGER ZONE!</h2>
-        <button id="resetButton">Reset your beans</button>
+        <p>
+          Warning! Only click this if you want to reset <em>ALL</em> of your
+          beans!
+        </p>
+        <button id="resetButton">Reset your beans?</button>
       </section>
     </div>
+    <footer>Frankie Shrieves</footer>
   </body>
-  <footer>Frankie Shrieves</footer>
 </html>

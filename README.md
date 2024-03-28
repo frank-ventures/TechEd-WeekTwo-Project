@@ -28,6 +28,11 @@ I was really pleased with how the counters saved and loaded in and out of local 
 
 ## Further Detail
 
+### Resources
+
+For icons - www.flaticon.com
+For images - www.unsplash.com/
+
 ### A Simple Start
 
 I started with a very basic page with very little UI aesthetics! This allowed me to focus on the JS code.
@@ -37,3 +42,19 @@ I kept my basic JS code easy-to-read, plainly naming the buttons and functions. 
 Using a little CSS let me visually seperate the page.
 
 I realised that loading the User Stats on page load could probably be done as a "for loop" for an object. This will be a stretch implementation.
+
+### Developing the style
+
+I went for a theme of a cosy coffee shop for some of the page elements.
+
+I grabbed stock images of wood from Unsplash for the backgrounds.
+
+I utilised shared CSS classes to repeat theming across the page.
+
+I started to use images instead of buttons to operate the JavaScript.
+
+### Extra layers
+
+I laid the structure in HTML and CSS for purchaseable 'upgrades'.
+
+These will affect the 'coffee beans per second' the user gains.
