@@ -1,9 +1,39 @@
+* {
+  font-family: fantasy;
+  box-sizing: border-box;
+}
 body {
   background-color: coral;
 }
 
+button {
+  font-size: medium;
+  padding: 15px;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
   gap: 25px;
+}
+
+.counter {
+  background-color: brown;
+  color: white;
+
+  padding: 10px;
+}
+
+.per-second {
+  background-color: burlywood;
+  padding: 10px;
+}
+
+footer {
+  background-color: brown;
+  color: white;
+  padding: 10px;
+}
+
+.reset {
+  padding-bottom: 10px;
 }
