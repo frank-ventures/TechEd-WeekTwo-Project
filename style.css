@@ -5,7 +5,10 @@
   margin: 0;
 }
 body {
-  background-color: rgb(28, 92, 28);
+  /* background-color: rgb(28, 92, 28); */
+  background-image: url("./assets/hygge-background-3.jpg");
+  background-size: cover;
+  background-position: center center;
 }
 
 button {
@@ -19,6 +22,7 @@ img {
   width: 70px;
   padding: 5px;
   border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .page-border {
@@ -89,13 +93,21 @@ header p {
 
   background-image: url("./assets/wood-one.jpg");
 }
+/*  -- Colours the counters */
+.has-background span {
+  color: white;
+  font-size: 4rem;
+}
+
+#currentCost {
+  font-size: large;
+}
 
 .counter {
   grid-column: 2;
   grid-row: 1;
 
   background-image: url("./assets/wood-three.jpg");
-  color: white;
 }
 
 .per-second {
