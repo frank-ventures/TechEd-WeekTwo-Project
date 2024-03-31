@@ -25,6 +25,8 @@ I kept track of my thoughts and tasks here: https://frankjs.notion.site/Day-Nine
 - Live counters
 - Game reset
 - Feelings of Hygge thanks to soft, cosy imagery...
+- Pointless upgrades to aim for!
+- Functions and loops aplenty!
 
 ### What went well
 
@@ -41,14 +43,25 @@ I was pleased to get some checks working to make sure the user couldn't:
 
 ### Sticky points
 
-Figuring out the math and logic flow of the checks took some time, but 'rubber ducking' my way through, and using trial-and-error got the right solutions in place.
+Figuring out the math and logic flow of the checks took some time, especially figuring out the 'decimal point' problem, and how to display the numbers I wanted on that page.
+'Rubber ducking' my way through, and using trial-and-error got the right solutions in place.
+
+Finding out how to get the information I needed from an object, and also how to link information between objects, took a lot of reading and experimentation.
+I eventually realised the keys within my objects needed to be exactly the same, and I discovered the correct syntax for ym 'for-loops' through using a lot of "console.log"s!
+
+### Future Improvements
+
+I'm sure I could make my code tidier and more efficient by including loops for how I've declared some of my variables and how I change text in 'updatePageStats'.
+
+While it works for now, I think I could consolidate some of my objects into one, by having the 'Upgrades' information together like, "ID, Cost, beans-per-second" all in one. I'd imagine this would involve using different for-loops.
+Doing this would make future additions slightly easier to implement, by creating one new object in an array, rather than madifying three objects with values for a new 'upgrade'
 
 ## Further Detail
 
 ### Resources
 
 For icons - www.flaticon.com
-For images - www.unsplash.com/
+For images - www.unsplash.com
 
 ### A Simple Start
 
@@ -72,9 +85,7 @@ I started to use icons instead of buttons to operate the JavaScript.
 
 ### Extra parts
 
-I laid the structure in HTML and CSS for purchaseable 'upgrades'.
-
-These will affect the 'coffee beans per second' the user gains.
+I laid the structure in HTML and CSS for purchaseable 'upgrades' which would later affect the 'coffee beans per second' the user gains.
 
 **Reducing the beans per second**
 
@@ -98,3 +109,25 @@ I created a new variable in the 'userStats' object called "userUpgradeCost", and
 Then, a function called "calculateUpgradeCost" which dynamically changed the cost of the upgrade button depending on the users current 'bps' rate. I had to spend a little time here to figure out the right math to use.
 
 Finally, I amended the "getUpgrade" function to use this new cost, and checked if the user could afford an "easy" upgrade!
+
+**Enabling/Disabling the Upgrade Buttons**
+I created an object called 'buttons' which stored the 'Upgrade Buttons'.
+I matched their costs and beans-per-second values in separate objects titled, 'userCostOfUpgrades' and 'beansPerUpgrade'.
+I kept 'userCostOfUpgrades' seperate so that I could scale the cost as the user bought more, but also so I could reset the values.
+
+I wrote a function called 'updateButtons' which would loop through 'buttons', find their associated cost, check if the user had enough "beans" to afford the upgrade, then set their 'disabled' attribute to true or false.
+https://stackoverflow.com/questions/22456641/disable-non-clickable-an-html-button-in-javascript
+https://www.w3schools.com/jsref/prop_reset_disabled.asp
+
+**Adding Upgrades!**
+Following the theme of being "the worlds best coffee bean collector", I added four upgrades.
+I already had the groundwork for how these would operate:
+
+- Costing 'beans'
+- Increasing the 'beans per second' rate
+- Increasing in cost on each purchase
+- Showing how many upgrades you had on the page
+
+I had to refactor my code a bit by creating a few new objects, moving the existing 'upgrade' into the new objects, then adding new functions to support the upgrades.
+
+It also meant modifying the 'resetUserStats' function to loop through both the 'userStats' and 'userCostOfUpgrades' objects to properly reset to zero.
