@@ -67,7 +67,7 @@ updateButtons();
 // Runs once to check if a user has locally stored stats, then updates the live stats to match.
 const storedUserStats = JSON.parse(localStorage.getItem("userStats"));
 const storedUserCosts = JSON.parse(localStorage.getItem("userCostOfUpgrades"));
-if (storedUserStats) {
+if (storedUserStats != null) {
   for (let currentStat in userStats) {
     userStats[currentStat] = storedUserStats[currentStat];
   }
