@@ -56,6 +56,10 @@ I'm sure I could make my code tidier and more efficient by including loops for h
 While it works for now, I think I could consolidate some of my objects into one, by having the 'Upgrades' information together like, "ID, Cost, beans-per-second" all in one. I'd imagine this would involve using different for-loops.
 Doing this would make future additions slightly easier to implement, by creating one new object in an array, rather than madifying three objects with values for a new 'upgrade'
 
+I wanted to find a way to add a "Caffeine Jitter" to the page, the more beans the user collects.
+
+An options menu, to toggle things like "Caffeine Jitter" and "Sound Effects".
+
 ## Further Detail
 
 ### Resources
@@ -111,6 +115,7 @@ Then, a function called "calculateUpgradeCost" which dynamically changed the cos
 Finally, I amended the "getUpgrade" function to use this new cost, and checked if the user could afford an "easy" upgrade!
 
 **Enabling/Disabling the Upgrade Buttons**
+
 I created an object called 'buttons' which stored the 'Upgrade Buttons'.
 I matched their costs and beans-per-second values in separate objects titled, 'userCostOfUpgrades' and 'beansPerUpgrade'.
 I kept 'userCostOfUpgrades' seperate so that I could scale the cost as the user bought more, but also so I could reset the values.
@@ -124,6 +129,7 @@ https://stackoverflow.com/questions/35187239/disable-or-enable-an-html5-image-wi
 And then used ".classList.remove()" / ".classList.add()" to make it clear to the user if the button was enabled or not.
 
 **Adding Upgrades!**
+
 Following the theme of being "the worlds best coffee bean collector", I added four upgrades.
 I already had the groundwork for how these would operate:
 
@@ -138,4 +144,20 @@ It also meant modifying the 'resetUserStats' function to loop through both the '
 
 **Style and Piz-zazz**
 
-Next up: Animations and sound effects!
+Next up: Icons, animations and sound effects!
+
+I got some icons to create a game theme from FlatIcon.
+
+I added a floating animation to the starter buttons with help from here:
+https://www.w3schools.com/css/css3_animations.asp
+But more clearly from here:
+https://fdossena.com/?p=html5cool/clickfx/i.frag
+
+Plus some audio effects on clicks:
+https://dev.to/shantanu_jana/how-to-play-sound-on-button-click-in-javascript-3m48
+with sounds from here:
+www.pixabay.com
+
+I created a new object containing links to the sound effects, match to the Upgrade ID's to easily add the "sound.play()" function to the "getUpgrade()" function I already had.
+
+I added audio to the page with play and pause icons for the user to interact with.

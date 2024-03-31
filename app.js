@@ -10,6 +10,9 @@ const buttons = {
   traderButton: document.getElementById("traderButton"),
   formulaButton: document.getElementById("formulaButton"),
 };
+// -- Audio Buttons
+const playButton = document.getElementById("playButton");
+const pauseButton = document.getElementById("pauseButton");
 // -- Page Display
 const beanCounter = document.getElementById("beanCounter");
 const beansPerSecond = document.getElementById("beansPerSecond");
@@ -28,6 +31,8 @@ const usersFormulas = document.getElementById("usersFormulas");
 const easyCount = document.getElementById("easyCount");
 const treeCount = document.getElementById("treeCount");
 const workerCount = document.getElementById("workerCount");
+// Audio
+const backgroundAudio = document.getElementById("backgroundAudio");
 
 //  -- Set the User Stats Object
 const userStats = {
@@ -63,6 +68,13 @@ const beansPerUpgrade = {
   formulaButton: 500,
 };
 
+const upgradeAudio = {
+  treeButton: new Audio("./assets/tree-planting.mp3"),
+  workerButton: new Audio("./assets/farm-sound.mp3"),
+  traderButton: new Audio("./assets/trader.mp3"),
+  formulaButton: new Audio("./assets/formula.mp3"),
+};
+
 // Update Buttons and Stats on page load::
 updateButtons();
 
@@ -89,6 +101,51 @@ function increaseBeanCount() {
   userStats.beanCount++;
   updateAll();
 }
+
+function beanClickAnimation(event) {
+  // Lets audio play on each click.
+  let ping = new Audio("./assets/ping.mp3");
+  ping.play();
+  // Creates a new image to float, and gives it the CSS class.
+  const beanAnimation = document.createElement("img");
+  beanAnimation.src = "./assets/coffee-beans.png";
+  beanAnimation.className = "float-animation";
+
+  // Sets the starting position.
+  const cursorX = event.clientX;
+  const cursorY = event.clientY;
+  beanAnimation.style.left = `${cursorX - 80}px`;
+  beanAnimation.style.top = `${cursorY - 80}px`;
+
+  //Puts it on the page.
+  document.body.appendChild(beanAnimation);
+
+  // Makes sure it disappears afterwards! Bug fix.
+  setTimeout(() => {
+    beanAnimation.remove();
+  }, 950);
+}
+
+function bagClickAnimation(event) {
+  let crumple = new Audio("./assets/crumple.mp3");
+  crumple.play();
+
+  const bagAnimation = document.createElement("img");
+  bagAnimation.src = "./assets/coffee-bag.png";
+  bagAnimation.className = "float-animation";
+
+  const cursorX = event.clientX;
+  const cursorY = event.clientY;
+  bagAnimation.style.left = `${cursorX - 80}px`;
+  bagAnimation.style.top = `${cursorY - 80}px`;
+
+  document.body.appendChild(bagAnimation);
+
+  setTimeout(() => {
+    bagAnimation.remove();
+  }, 950);
+}
+
 // This increases the cost of the easy upgrade according to the users Beans Per Second rate.
 function calculateEasyUpgradeButton() {
   // Short if-statement to make sure the cost doesn't increase too early in the game.
@@ -133,6 +190,7 @@ function getUpgrade(name) {
     userStats[thisUpgrade] = userStats[thisUpgrade] + 1;
     userStats.beanCount -= userCostOfUpgrades[thisUpgrade];
     userStats.beansPerSecond += beansPerUpgrade[thisUpgrade];
+    upgradeAudio[thisUpgrade].play();
     // calculate upgrade cost?
     console.log(`You have ${userStats[thisUpgrade]} ${thisUpgrade}s`);
   } else {
@@ -214,6 +272,14 @@ function resetUserStats() {
   updateAll();
 }
 
+// Audio Functions:
+function playAudio() {
+  backgroundAudio.play();
+}
+function pauseAudio() {
+  backgroundAudio.pause();
+}
+
 setInterval(() => {
   userStats.beanCount = userStats.beanCount + userStats.beansPerSecond;
   // more Math.round() to ensure one decimal place.
@@ -223,9 +289,16 @@ setInterval(() => {
 
 // Event listeners::
 coffeeButton.addEventListener("click", increaseBeanCount);
+coffeeButton.addEventListener("click", beanClickAnimation);
 buttons.easyUpgradeButton.addEventListener("click", getEasyUpgrade);
+buttons.easyUpgradeButton.addEventListener("click", bagClickAnimation);
+// Upgrades
 treeButton.addEventListener("click", getUpgrade);
 workerButton.addEventListener("click", getUpgrade);
 traderButton.addEventListener("click", getUpgrade);
 formulaButton.addEventListener("click", getUpgrade);
+// Reset
 resetButton.addEventListener("click", resetUserStats);
+// Audio
+playButton.addEventListener("click", playAudio);
+pauseButton.addEventListener("click", pauseAudio);
