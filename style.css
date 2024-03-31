@@ -25,6 +25,10 @@ img {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
+.button-disabled {
+  background-color: grey;
+}
+
 .page-border {
   border: 1px solid rgb(190, 190, 190);
 }
@@ -107,6 +111,9 @@ header p {
 }
 
 #currentCost {
+  font-size: 2rem;
+}
+#easyCount {
   font-size: 2rem;
 }
 

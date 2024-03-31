@@ -4,6 +4,7 @@ const coffeeButton = document.getElementById("coffeeButton");
 const resetButton = document.getElementById("resetButton");
 // -- Upgrade Buttons
 const buttons = {
+  easyUpgradeButton: document.getElementById("upgradeButton"),
   treeButton: document.getElementById("treeButton"),
   workerButton: document.getElementById("workerButton"),
   traderButton: document.getElementById("traderButton"),
@@ -24,6 +25,7 @@ const usersWorkers = document.getElementById("usersWorkers");
 const usersTraders = document.getElementById("usersTraders");
 const usersFormulas = document.getElementById("usersFormulas");
 // Displays how many bps the user gets from upgrades
+const easyCount = document.getElementById("easyCount");
 const treeCount = document.getElementById("treeCount");
 const workerCount = document.getElementById("workerCount");
 
@@ -38,7 +40,7 @@ const userStats = {
 };
 // -- Set the cost of the upgrades, and make them match the keys in the 'buttons' object.
 const userCostOfUpgrades = {
-  easyUpgradeCost: 5,
+  easyUpgradeButton: 5,
   treeButton: 100,
   workerButton: 1000,
   traderButton: 20000,
@@ -46,7 +48,7 @@ const userCostOfUpgrades = {
 };
 
 const baseCostOfUpgrades = {
-  easyUpgradeCost: 5,
+  easyUpgradeButton: 5,
   treeButton: 100,
   workerButton: 3000,
   traderButton: 20000,
@@ -54,12 +56,12 @@ const baseCostOfUpgrades = {
 };
 
 const beansPerUpgrade = {
+  easyUpgradeButton: 0.5,
   treeButton: 10,
   workerButton: 50,
   traderButton: 200,
   formulaButton: 500,
 };
-// const easyUpgradeCost = 5;
 
 // Update Buttons and Stats on page load::
 updateButtons();
@@ -88,22 +90,22 @@ function increaseBeanCount() {
   updateAll();
 }
 // This increases the cost of the easy upgrade according to the users Beans Per Second rate.
-function calculateEasyUpgradeCost() {
+function calculateEasyUpgradeButton() {
   // Short if-statement to make sure the cost doesn't increase too early in the game.
   if (userStats.beansPerSecond > 1) {
-    userCostOfUpgrades.easyUpgradeCost =
-      baseCostOfUpgrades.easyUpgradeCost * userStats.beansPerSecond;
+    userCostOfUpgrades.easyUpgradeButton =
+      baseCostOfUpgrades.easyUpgradeButton * userStats.beansPerSecond;
   }
 }
 // This handles the simple upgrade::
 function getEasyUpgrade() {
-  calculateEasyUpgradeCost();
+  calculateEasyUpgradeButton();
 
   // makes sure the user can afford the upgrade.
-  if (userStats.beanCount > userCostOfUpgrades.easyUpgradeCost - 1) {
+  if (userStats.beanCount > userCostOfUpgrades.easyUpgradeButton - 1) {
     userStats.beanCount =
-      userStats.beanCount - userCostOfUpgrades.easyUpgradeCost;
-    userStats.beansPerSecond += 0.2;
+      userStats.beanCount - userCostOfUpgrades.easyUpgradeButton;
+    userStats.beansPerSecond += beansPerUpgrade.easyUpgradeButton;
 
     // Use of Math.round() to ensure a number with one decimal place.
     userStats.beansPerSecond = Math.round(userStats.beansPerSecond * 10) / 10;
@@ -124,7 +126,6 @@ function calculateOtherUpgradeCost(thisUpgrade) {
 function getUpgrade(name) {
   // This gets the id of the button which has been clicked:
   let thisUpgrade = name.target.id;
-  calculateOtherUpgradeCost(thisUpgrade);
   // This applies the button ID to the matching cost in the costOfUpgrades object: costOfUpgrades[thisUpgrade]
   // This checks the user can afford the ugrade and acts appropriately if they can.
   if (userStats.beanCount > userCostOfUpgrades[thisUpgrade] - 1) {
@@ -137,6 +138,8 @@ function getUpgrade(name) {
   } else {
     console.log("You can't afford it!");
   }
+  calculateOtherUpgradeCost(thisUpgrade);
+
   updateAll();
 }
 
@@ -151,13 +154,14 @@ function updatePageStats() {
   usersTraders.textContent = userStats.traderButton;
   usersFormulas.textContent = userStats.formulaButton;
   // Current easy cost
-  currentCost.textContent = userCostOfUpgrades.easyUpgradeCost.toFixed(0);
+  currentCost.textContent = userCostOfUpgrades.easyUpgradeButton.toFixed(0);
   // Upgrades Store
   treeCost.textContent = userCostOfUpgrades.treeButton.toFixed(0);
   workerCost.textContent = userCostOfUpgrades.workerButton.toFixed(0);
   traderCost.textContent = userCostOfUpgrades.traderButton.toFixed(0);
   formulaCost.textContent = userCostOfUpgrades.formulaButton.toFixed(0);
 
+  easyCount.textContent = beansPerUpgrade.easyUpgradeButton;
   treeCount.textContent = beansPerUpgrade.treeButton;
   workerCount.textContent = beansPerUpgrade.workerButton;
 }
@@ -180,16 +184,18 @@ function updateButtons() {
 
     // Then we check if the user can afford the current upgrade and set visibility to match
     if (userStats.beanCount > upgradeCost - 1) {
-      buttonElement.disabled = false;
+      buttonElement.style.pointerEvents = "auto";
+      buttonElement.classList.remove("button-disabled");
     } else {
-      buttonElement.disabled = true;
+      buttonElement.style.pointerEvents = "none";
+      buttonElement.classList.add("button-disabled");
     }
   }
 }
 
 // Easier to call page updates in one functiion
 function updateAll() {
-  calculateEasyUpgradeCost();
+  calculateEasyUpgradeButton();
   updatePageStats();
   updateUserStorage();
   updateButtons();
@@ -217,8 +223,8 @@ setInterval(() => {
 
 // Event listeners::
 coffeeButton.addEventListener("click", increaseBeanCount);
-upgradeButton.addEventListener("click", getEasyUpgrade);
-buttons.treeButton.addEventListener("click", getUpgrade);
+buttons.easyUpgradeButton.addEventListener("click", getEasyUpgrade);
+treeButton.addEventListener("click", getUpgrade);
 workerButton.addEventListener("click", getUpgrade);
 traderButton.addEventListener("click", getUpgrade);
 formulaButton.addEventListener("click", getUpgrade);

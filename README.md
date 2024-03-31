@@ -119,6 +119,10 @@ I wrote a function called 'updateButtons' which would loop through 'buttons', fi
 https://stackoverflow.com/questions/22456641/disable-non-clickable-an-html-button-in-javascript
 https://www.w3schools.com/jsref/prop_reset_disabled.asp
 
+I realised this didn't/wouldn't work for when I'm using 'images' as buttons, so I found a solution here:
+https://stackoverflow.com/questions/35187239/disable-or-enable-an-html5-image-with-javascript
+And then used ".classList.remove()" / ".classList.add()" to make it clear to the user if the button was enabled or not.
+
 **Adding Upgrades!**
 Following the theme of being "the worlds best coffee bean collector", I added four upgrades.
 I already had the groundwork for how these would operate:
@@ -131,3 +135,7 @@ I already had the groundwork for how these would operate:
 I had to refactor my code a bit by creating a few new objects, moving the existing 'upgrade' into the new objects, then adding new functions to support the upgrades.
 
 It also meant modifying the 'resetUserStats' function to loop through both the 'userStats' and 'userCostOfUpgrades' objects to properly reset to zero.
+
+**Style and Piz-zazz**
+
+Next up: Animations and sound effects!
