@@ -71,13 +71,13 @@ if (storedUserStats != null) {
   for (let currentStat in userStats) {
     userStats[currentStat] = storedUserStats[currentStat];
   }
+  updatePageStats();
+}
+
+if (storedUserCosts != null) {
   for (let currentCost in userCostOfUpgrades) {
     userCostOfUpgrades[currentCost] = storedUserCosts[currentCost];
   }
-  // userStats.beanCount = storedUserStats.beanCount;
-  // userStats.beansPerSecond = storedUserStats.beansPerSecond;
-  // userStats.userUpgradeCost = storedUserStats.userUpgradeCost;
-
   updatePageStats();
 }
 
@@ -177,7 +177,6 @@ function updateButtons() {
     const buttonElement = buttons[buttonID];
     // We set a variable to be the cost which matches the key of the current button
     const upgradeCost = userCostOfUpgrades[buttonID];
-    console.log(buttonElement);
 
     // Then we check if the user can afford the current upgrade and set visibility to match
     if (userStats.beanCount > upgradeCost - 1) {
