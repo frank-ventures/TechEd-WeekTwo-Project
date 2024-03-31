@@ -49,6 +49,10 @@ Figuring out the math and logic flow of the checks took some time, especially fi
 Finding out how to get the information I needed from an object, and also how to link information between objects, took a lot of reading and experimentation.
 I eventually realised the keys within my objects needed to be exactly the same, and I discovered the correct syntax for ym 'for-loops' through using a lot of "console.log"s!
 
+Sometimes when adding a new "event listener" to a new button, I'd write this:
+newButton.addEventListener("click", myFunction())
+and spend around 10 minutes wondering why the coder wasn't working, before removing the extra brackets from the function call.
+
 ### Future Improvements
 
 I'm sure I could make my code tidier and more efficient by including loops for how I've declared some of my variables and how I change text in 'updatePageStats'.
