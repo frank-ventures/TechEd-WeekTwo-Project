@@ -15,6 +15,7 @@ const playButton = document.getElementById("playButton");
 const pauseButton = document.getElementById("pauseButton");
 // -- Page Display
 const beanCounter = document.getElementById("beanCounter");
+const beanCounterParag = document.getElementById("beanCounterParag");
 const beansPerSecond = document.getElementById("beansPerSecond");
 const currentCost = document.getElementById("currentCost");
 // Upgrade Zone Cost Displays
@@ -143,6 +144,17 @@ function bagClickAnimation(event) {
 
   setTimeout(() => {
     bagAnimation.remove();
+  }, 950);
+}
+
+function beansPerSecondAnimation() {
+  const newBeans = document.createElement("div");
+  newBeans.textContent = userStats.beansPerSecond;
+  newBeans.className = "new-beans-animation";
+  beanCounterParag.appendChild(newBeans);
+
+  setTimeout(() => {
+    newBeans.remove();
   }, 950);
 }
 
@@ -284,6 +296,7 @@ setInterval(() => {
   userStats.beanCount = userStats.beanCount + userStats.beansPerSecond;
   // more Math.round() to ensure one decimal place.
   userStats.beanCount = Math.round(userStats.beanCount * 10) / 10;
+  beansPerSecondAnimation();
   updateAll();
 }, 1000);
 

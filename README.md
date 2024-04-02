@@ -51,7 +51,7 @@ I eventually realised the keys within my objects needed to be exactly the same, 
 
 Sometimes when adding a new "event listener" to a new button, I'd write this:
 newButton.addEventListener("click", myFunction())
-and spend around 10 minutes wondering why the coder wasn't working, before removing the extra brackets from the function call.
+and spend around 10 minutes wondering why the code wasn't working, before removing the extra brackets from the function call.
 
 ### Future Improvements
 

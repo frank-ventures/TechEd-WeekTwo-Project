@@ -120,6 +120,10 @@ header p {
   font-size: 2rem;
 }
 
+#beanCounterParag {
+  position: relative;
+}
+
 .counter {
   grid-column: 2;
   grid-row: 1;
@@ -255,10 +259,26 @@ audio {
   padding: 0;
 
   background-color: rgba(255, 255, 255, 0);
+  color: white;
 
   width: 100px;
   height: 100px;
 }
+
+.new-beans-animation {
+  position: absolute;
+  z-index: 9;
+  pointer-events: none;
+  animation-name: float-animation;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  top: 0;
+  right: 0;
+
+  color: white;
+  font-size: 2em;
+}
+
 @keyframes float-animation {
   0% {
     transform: translate(0, 0);
