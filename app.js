@@ -18,6 +18,11 @@ const beanCounter = document.getElementById("beanCounter");
 const beanCounterParag = document.getElementById("beanCounterParag");
 const beansPerSecond = document.getElementById("beansPerSecond");
 const currentCost = document.getElementById("currentCost");
+// Sections
+const startHere = document.getElementById("startHere");
+const bpsSection = document.getElementById("bpsSection");
+const bpsCounter = document.getElementById("bpsCounter");
+const upgradeZone = document.getElementById("upgradeZone");
 // Upgrade Zone Cost Displays
 const treeCost = document.getElementById("treeCost");
 const workerCost = document.getElementById("workerCost");
@@ -32,6 +37,8 @@ const usersFormulas = document.getElementById("usersFormulas");
 const easyCount = document.getElementById("easyCount");
 const treeCount = document.getElementById("treeCount");
 const workerCount = document.getElementById("workerCount");
+const traderCount = document.getElementById("traderCount");
+const formulaCount = document.getElementById("formulaCount");
 // Audio
 const backgroundAudio = document.getElementById("backgroundAudio");
 
@@ -76,12 +83,18 @@ const upgradeAudio = {
   formulaButton: new Audio("./assets/formula.mp3"),
 };
 
+const userSectionChecks = {
+  hasTwentyBeans: false,
+  hasFourUpgrades: false,
+};
+
 // Update Buttons and Stats on page load::
 updateButtons();
 
 // Runs once to check if a user has locally stored stats, then updates the live stats to match.
 const storedUserStats = JSON.parse(localStorage.getItem("userStats"));
 const storedUserCosts = JSON.parse(localStorage.getItem("userCostOfUpgrades"));
+const storedUserChecks = JSON.parse(localStorage.getItem("userSectionChecks"));
 if (storedUserStats != null) {
   for (let currentStat in userStats) {
     userStats[currentStat] = storedUserStats[currentStat];
@@ -96,10 +109,21 @@ if (storedUserCosts != null) {
   updatePageStats();
 }
 
+if (storedUserChecks != null) {
+  for (let currentCheck in userSectionChecks) {
+    userSectionChecks[currentCheck] = storedUserChecks[currentCheck];
+  }
+  checkHiddenContainers();
+  updatePageStats();
+}
+
 // Functions::
 
 function increaseBeanCount() {
   userStats.beanCount++;
+  if (userSectionChecks.hasTwentyBeans === false) {
+    checkHiddenContainers();
+  }
   updateAll();
 }
 
@@ -178,7 +202,11 @@ function getEasyUpgrade() {
 
     // Use of Math.round() to ensure a number with one decimal place.
     userStats.beansPerSecond = Math.round(userStats.beansPerSecond * 10) / 10;
+
     updateAll();
+  }
+  if (userSectionChecks.hasFourUpgrades === false) {
+    checkHiddenContainers();
   }
 }
 // This handles the Upgrade Zone cost increases
@@ -234,6 +262,8 @@ function updatePageStats() {
   easyCount.textContent = beansPerUpgrade.easyUpgradeButton;
   treeCount.textContent = beansPerUpgrade.treeButton;
   workerCount.textContent = beansPerUpgrade.workerButton;
+  traderCount.textContent = beansPerUpgrade.traderButton;
+  formulaCount.textContent = beansPerUpgrade.formulaButton;
 }
 
 function updateUserStorage() {
@@ -242,6 +272,7 @@ function updateUserStorage() {
     "userCostOfUpgrades",
     JSON.stringify(userCostOfUpgrades)
   );
+  localStorage.setItem("userSectionChecks", JSON.stringify(userSectionChecks));
 }
 
 function updateButtons() {
@@ -265,10 +296,44 @@ function updateButtons() {
 
 // Easier to call page updates in one functiion
 function updateAll() {
+  checkHiddenContainers();
   calculateEasyUpgradeButton();
   updatePageStats();
   updateUserStorage();
   updateButtons();
+}
+
+// Early game checks to hide content until the user is ready.
+function checkHiddenContainers() {
+  if (storedUserChecks != null) {
+    if (userSectionChecks.hasTwentyBeans === true) {
+      bpsSection.classList.remove("hidden-start");
+      bpsCounter.classList.remove("hidden-start");
+      startHere.style.visibility = "hidden";
+    } else {
+    }
+    if (userSectionChecks.hasFourUpgrades === true) {
+      upgradeZone.classList.remove("hidden-start");
+    }
+  }
+
+  if (userSectionChecks.hasTwentyBeans === false) {
+    bpsSection.classList.add("hidden-start");
+    bpsCounter.classList.add("hidden-start");
+    if (userStats.beanCount > 19) {
+      userSectionChecks.hasTwentyBeans = true;
+      bpsSection.classList.remove("hidden-start");
+      bpsCounter.classList.remove("hidden-start");
+    }
+  }
+
+  if (userSectionChecks.hasFourUpgrades === false) {
+    upgradeZone.classList.add("hidden-start");
+    if (userStats.beansPerSecond > 4) {
+      userSectionChecks.hasFourUpgrades = true;
+      upgradeZone.classList.remove("hidden-start");
+    }
+  }
 }
 
 function resetUserStats() {
@@ -281,6 +346,12 @@ function resetUserStats() {
   for (resetCost in userCostOfUpgrades) {
     userCostOfUpgrades[resetCost] = baseCostOfUpgrades[resetCost];
   }
+
+  for (resetSections in userSectionChecks) {
+    userSectionChecks[resetSections] = false;
+  }
+  startHere.style.visibility = "visible";
+
   updateAll();
 }
 
@@ -296,7 +367,9 @@ setInterval(() => {
   userStats.beanCount = userStats.beanCount + userStats.beansPerSecond;
   // more Math.round() to ensure one decimal place.
   userStats.beanCount = Math.round(userStats.beanCount * 10) / 10;
-  beansPerSecondAnimation();
+  if (userStats.beansPerSecond > 0) {
+    beansPerSecondAnimation();
+  }
   updateAll();
 }, 1000);
 

@@ -19,27 +19,30 @@
   <body>
     <audio controls loop src="./assets/shop-ambience.mp3" id="backgroundAudio"></audio>
     <div class="audio-player">
-      <img id="playButton" class="hover-effect" src="./assets/audio-play.png"></img>
-      <img id="pauseButton" class="hover-effect" src="./assets/audio-pause.png"></img>
+      <img id="playButton" class="hover-effect" src="./assets/audio-play.png" alt="audio play button"></img>
+      <img id="pauseButton" class="hover-effect" src="./assets/audio-pause.png" alt="audio pause button"></img>
       <p>Lovely background noise!</p>
     </div>
     <div class="wrapper">
       <!-- This is where the clicker itself is. -->
       <section class="clicker page-border has-background centralise-content">
+        <p class="sub-icon" id="startHere">Click the bean!</p>
         <img
           src="./assets/coffee-beans.png"
           class="hover-effect"
           id="coffeeButton"
+          alt="main coffee bean clicker button"
         />
         <p class="sub-icon page-border">Click here to find more beans!</p>
       </section>
 
       <!-- The upgrades shop -->
-      <section class="upgrades page-border has-background centralise-content">
+      <section class="upgrades page-border has-background centralise-content hidden-start" id="bpsSection">
         <img
           src="./assets/coffee-bag.png"
           class="hover-effect"
           id="upgradeButton"
+          alt="main upgrade button"
         />
         <p class="sub-icon page-border">
           An easy upgrade costs: <span id="currentCost"></span> beans.
@@ -58,13 +61,14 @@
       </section>
 
       <!-- This shows the automatic 'cookies per second' display -->
-      <section class="per-second page-border has-background centralise-content">
+      <section class="per-second page-border has-background centralise-content hidden-start" id="bpsCounter">
         <p><span id="beansPerSecond"></span></p>
         <p class="sub-icon page-border">
           Your empire earns these beans per second.
         </p>
       </section>
-      <section class="upgrade-zone page-border has-background">
+      <!-- This is the right hand container for the Upgrades  -->
+      <section class="upgrade-zone page-border has-background hidden-start" id="upgradeZone">
         <div class="upgrade-header">
           <h2>The Upgrade Zone</h2>
           <p>Trade your beans for fancy new kit and expansions here!</p>
@@ -79,9 +83,10 @@
                 src="./assets/coffee-plant.png"
                 class="hover-effect"
                 id="treeButton"
+                alt="tree upgrade button"
               />
               <p>Cost: <span id="treeCost"></span></p>
-              <p>A tree grows <span id="treeCount"></span> coffee beans!</p>
+              <p>A tree grows <span id="treeCount"></span> coffee beans a second!</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -92,9 +97,10 @@
                 src="./assets/coffee-farmer.png"
                 class="hover-effect"
                 id="workerButton"
+                alt="farm worker upgrade button"
               />
               <p>Cost: <span id="workerCost"></span></p>
-              <p>A farmer collects <span id="workerCount"></span> beans.</p>
+              <p>A farmer collects <span id="workerCount"></span> beans-p-s.</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -105,9 +111,10 @@
                 src="./assets/coffee-trader.png"
                 class="hover-effect"
                 id="traderButton"
+                alt="trader upgrade button"
               />
               <p>Cost: <span id="traderCost"></span></p>
-              <p>One of the worlds best traders gets you better deals.</p>
+              <p>One of the worlds best traders gets you better deals. Gets <span id="traderCount"></span> beans.</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -118,12 +125,17 @@
                 src="./assets/coffee-formula.png"
                 class="hover-effect"
                 id="formulaButton"
+                alt="secret formula upgrade button"
               />
               <p>Cost: <span id="formulaCost"></span></p>
-              <p>We can't tell you, but it's <em>really</em> good!</p>
+              <p>We can't tell you, but it's <em>really</em> good! <em>(It's <span id="formulaCount"></span> bps)</em></p>
             </div>
           </div>
         </div>
+      </section>
+      <section class="badges">
+<p>Your badges are here</p>
+
       </section>
       <section class="reset page-border">
         <h2 class="danger">DANGER ZONE!</h2>
