@@ -8,7 +8,11 @@
     <title>Coffee Bean Clicker Game</title>
   </head>
   <header class="page-border">
-    <!-- Make this like a coffee shop sign. Forum? -->
+    <div class="audio-player">
+      <img id="playButton" class="hover-effect" src="./assets/audio-play.png" alt="audio play button"></img>
+      <img id="pauseButton" class="hover-effect" src="./assets/audio-pause.png" alt="audio pause button"></img>
+      <p>Lovely background noise!</p>
+    </div>
     <h1>The Caffeination Station</h1>
     <p>Become the Ultimate Coffee Bean Collector!</p>
     <p>
@@ -18,11 +22,6 @@
   </header>
   <body>
     <audio controls loop src="./assets/shop-ambience.mp3" id="backgroundAudio"></audio>
-    <div class="audio-player">
-      <img id="playButton" class="hover-effect" src="./assets/audio-play.png" alt="audio play button"></img>
-      <img id="pauseButton" class="hover-effect" src="./assets/audio-pause.png" alt="audio pause button"></img>
-      <p>Lovely background noise!</p>
-    </div>
     <div class="wrapper">
       <!-- This is where the clicker itself is. -->
       <section class="clicker page-border has-background centralise-content">
@@ -86,7 +85,7 @@
                 alt="tree upgrade button"
               />
               <p>Cost: <span id="treeCost"></span></p>
-              <p>A tree grows <span id="treeCount"></span> coffee beans a second!</p>
+              <p class="upgrade-info">A tree grows <span id="treeCount"></span> coffee beans a second!</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -100,7 +99,7 @@
                 alt="farm worker upgrade button"
               />
               <p>Cost: <span id="workerCost"></span></p>
-              <p>A farmer collects <span id="workerCount"></span> beans-p-s.</p>
+              <p class="upgrade-info">A farmer collects <span id="workerCount"></span> beans-p-s.</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -114,7 +113,7 @@
                 alt="trader upgrade button"
               />
               <p>Cost: <span id="traderCost"></span></p>
-              <p>One of the worlds best traders gets you better deals. Gets <span id="traderCount"></span> beans.</p>
+              <p class="upgrade-info">One of the worlds best traders gets you better deals. Gets <span id="traderCount"></span> beans.</p>
             </div>
           </div>
           <div class="upgrade-box page-border">
@@ -128,7 +127,7 @@
                 alt="secret formula upgrade button"
               />
               <p>Cost: <span id="formulaCost"></span></p>
-              <p>We can't tell you, but it's <em>really</em> good! <em>(It's <span id="formulaCount"></span> bps)</em></p>
+              <p class="upgrade-info">We can't tell you, but it's <em>really</em> good! <em>(It's <span id="formulaCount"></span> bps)</em></p>
             </div>
           </div>
         </div>
@@ -149,7 +148,7 @@
     <footer>
       <p>Frankie Shrieves</p>
       <a href="https://www.linkedin.com/in/frankie-shrieves/">LinkedIn</a>
-      <a href="https://github.com/frank-ventures">GitHub</a>
+      <a href="https://github.com/frank-ventures/TechEd-WeekTwo-Project">GitHub</a>
     </footer>
   </body>
 </html>

@@ -2,6 +2,8 @@
 
 ## Project- Cookie Clicker style game!
 
+**Link to live project:** https://frank-ventures.github.io/TechEd-WeekTwo-Project/
+
 Creating an interactive web page experience was this weeks direction, and I themed mine around coffee and caffeine.
 
 There were three main sections to the project this week:

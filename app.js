@@ -309,7 +309,7 @@ function checkHiddenContainers() {
     if (userSectionChecks.hasTwentyBeans === true) {
       bpsSection.classList.remove("hidden-start");
       bpsCounter.classList.remove("hidden-start");
-      startHere.style.visibility = "hidden";
+      startHere.style.display = "none";
     } else {
     }
     if (userSectionChecks.hasFourUpgrades === true) {
